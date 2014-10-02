@@ -8,7 +8,7 @@ namespace PerformanceCompareApp
 {
     class Program
     {
-        private const int count = 10000;
+        private const int count = 100000;
         static void Main(string[] args)
         {
             TestCsharp();
@@ -45,7 +45,7 @@ namespace PerformanceCompareApp
 
         private static void LogResult(IEnumerable<dynamic> persons)
         {
-            Console.Out.WriteLine("persons = {0}", persons.Sum(p => p.Id));
+            Console.Out.WriteLine("persons = {0}", persons.Average(p => p.Id));
         }
     }
 }
