@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using CSharpApp;
 
 namespace PerformanceCompareApp
 {
@@ -21,7 +20,7 @@ namespace PerformanceCompareApp
         {
             var generator = new FSharpApp.PersonGenerator();
             var stopWatch = new Stopwatch();
-            
+
             stopWatch.Start();
             var persons = generator.GetPersons(count).ToList();
             LogResult(persons);

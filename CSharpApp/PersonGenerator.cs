@@ -23,7 +23,7 @@ namespace CSharpApp
                     Amount = random.Next(1, 10),
                     Earned = 0,
                     PersonalNumber = GetPersonalNumber(),
-                    RegisteredDate = 2000+random.Next(0,9),
+                    RegisteredDate = 2000 + random.Next(0, 9),
                     Salary = random.Next(100, 1000),
                     Signature = "Signature"
                 };
