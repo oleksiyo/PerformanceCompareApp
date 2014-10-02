@@ -14,7 +14,9 @@ type Person =
 type PersonGenerator() =
     let randomNumberGenerator = new System.Random()
     let personalNumber = 
-        List.init 900 (fun _ -> randomNumberGenerator.Next(0,9)) |> Seq.map string |> String.concat "Number"
+        List.init 900 (fun _ -> randomNumberGenerator.Next(0,9)) 
+                                    |> Seq.map string 
+                                    |> String.concat "Number"
     
     let createPerson id =
         let person = {

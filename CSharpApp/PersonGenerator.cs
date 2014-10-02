@@ -1,39 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpApp
 {
     public class PersonGenerator
     {
-        public List<Person> GetPersons(int count)
+        private readonly Random random = new Random();
+
+        public IEnumerable<Person> GetPersons(int count)
         {
-            return Enumerable.Range(0, count).Select(CreatePerson).ToList();
+            return Enumerable.Range(0, count)
+                .AsParallel()
+                .Select(CreatePerson);
         }
 
         private Person CreatePerson(int personId)
         {
-            var random = new Random();
-            var personalNumber = String.Empty;
-
-                for (var i = 0; i < 900; i++)
-                {
-                    personalNumber += random.Next(0, 9).ToString() + "Number";
-                }
-
             return new Person
                 {
                     Id = personId,
                     Amount = random.Next(1, 10),
                     Earned = 0,
-                    PersonalNumber = personalNumber,
-                    RegisteredDate = DateTime.Now,
+                    PersonalNumber = GetPersonalNumber(),
+                    RegisteredDate = 2000+random.Next(0,9),
                     Salary = random.Next(100, 1000),
                     Signature = "Signature"
-                    
                 };
+        }
+
+        private string GetPersonalNumber()
+        {
+            return string.Join("Number",
+                               Enumerable.Repeat(0, 900)
+                                         .Select(_ => random.Next(0, 9))
+                                         .Select(i => i.ToString()));
         }
     }
 
@@ -42,7 +43,7 @@ namespace CSharpApp
         public int Id { get; set; }
         public string PersonalNumber { get; set; }
         public int Amount { get; set; }
-        public DateTime RegisteredDate { get; set; }
+        public int RegisteredDate { get; set; }
         public string Signature { get; set; }
         public int Salary { get; set; }
         public int Earned { get; set; }
